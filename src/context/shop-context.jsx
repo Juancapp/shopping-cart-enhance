@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
 export const ShopContext = createContext(null);
@@ -16,7 +16,20 @@ const getDefaultCart = () => {
 };
 
 export const ShopContextProvider = ({ children }) => {
+
   const [cartItems, setCartItems] = useState(getDefaultCart());
+  const [products, setProducts] = useState([]);
+  const [fetched, setFetched] = useState(false);
+  const url = "https://fakestoreapi.com/products";
+
+  useEffect(() => {
+    axios.get(url).then((response) => {
+      setProducts(response.data);
+      setFetched(true);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
   };
@@ -34,6 +47,8 @@ export const ShopContextProvider = ({ children }) => {
     addToCart,
     removeFromCart,
     updateCartItemCount,
+    products,
+    fetched
   };
 
   return (

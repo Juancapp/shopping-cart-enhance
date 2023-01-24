@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShopContext } from "../../context/shop-context";
@@ -6,20 +5,9 @@ import { CartItem } from "./cart-item";
 import "./cart.css";
 
 export const Cart = () => {
-  const [products, setProducts] = useState([]);
-  const url = "https://fakestoreapi.com/products";
-  const { cartItems } = useContext(ShopContext);
+  const { cartItems, products, fetched } = useContext(ShopContext);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [fetched, setFetched] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    axios.get(url).then((response) => {
-      setProducts(response.data);
-      setFetched(true);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     setTotalPrice(0);

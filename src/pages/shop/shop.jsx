@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
+import { ShopContext } from "../../context/shop-context";
 import { Product } from "./product";
 import "./shop.css";
 
 export const Shop = () => {
-  const [products, setProducts] = useState([]);
-  const url = "https://fakestoreapi.com/products";
-
-  useEffect(() => {
-    axios.get(url).then((response) => {
-      setProducts(response.data);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { products } = useContext(ShopContext);
 
   return (
     <div className="shop">
