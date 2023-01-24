@@ -23,10 +23,12 @@ export const ShopContextProvider = ({ children }) => {
   const url = "https://fakestoreapi.com/products";
 
   useEffect(() => {
-    axios.get(url).then((response) => {
-      setProducts(response.data);
+    const getProducts = async () => {
+      const result = await axios.get(url);
+      setProducts(result.data);
       setFetched(true);
-    });
+    };
+    getProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

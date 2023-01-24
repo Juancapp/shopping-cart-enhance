@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { ShopContext } from "../../context/shop-context";
+import { XCircle } from "phosphor-react";
 
 export const CartItem = (props) => {
   const { id, title, price, image } = props.data;
@@ -15,7 +16,7 @@ export const CartItem = (props) => {
           className="deleteItem"
           onClick={() => updateCartItemCount(0, id)}
         >
-          X
+          <XCircle size={28} />
         </button>
         <p>
           <b>{title}</b>
