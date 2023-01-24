@@ -16,8 +16,6 @@ export const Navbar = () => {
     setTotalCartItems(totalCartItemsUseEffect);
   }, [cartItems]);
 
-  console.log("cartItems", cartItems);
-
   return (
     <div className="navbar">
       <div className="links">
