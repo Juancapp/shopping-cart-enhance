@@ -9,7 +9,7 @@ export const Shop = () => {
   return (
     <div className="shop">
       <div className="shopTitle">
-        <h1>Juan Andrés Shop</h1>
+        <h4>Offerts!</h4>
       </div>
       <div className="products">
         {products.length ? (

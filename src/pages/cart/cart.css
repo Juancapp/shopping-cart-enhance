@@ -18,6 +18,7 @@
 
 .cartItem img {
   width: 180px;
+  height: 180px;
   margin: 30px;
 }
 
@@ -35,7 +36,7 @@
 .checkout button {
   width: 150px;
   height: 50px;
-  background-color: rgb(19, 19, 19);
+  background-color: #087F8C;
   color: white;
   border: none;
   border-radius: 8px;
@@ -58,4 +59,17 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  /* Estilos para dispositivos móviles */
+  .cart {
+    flex-direction: column;
+    align-items: center;
+  }
+  .cartItem {
+    width: 90%;
+    height: auto;
+  }
+  /* Agrega más estilos para ajustar a la pantalla móvil */
 }
