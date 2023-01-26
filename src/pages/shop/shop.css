@@ -81,6 +81,30 @@
   cursor: pointer;
 }
 
+.searchBar {
+  width: 90%;
+  padding-bottom: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.modern-input {
+  width: 20%;
+  border: none;
+  border-radius: 20px;
+  background-color: #f4f4f4;
+  margin-left: 10px;
+  padding: 0.5em 1em;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.modern-input:hover,
+.modern-input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -95,8 +119,7 @@
     flex-direction: column;
   }
 
-  .product{
-  width: auto;
+  .product {
+    width: auto;
   }
-
 }
