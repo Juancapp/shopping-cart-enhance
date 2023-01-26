@@ -12,11 +12,8 @@ export const Shop = () => {
 
   useEffect(() => {
     productsProcessed.current = products;
-  }, [products]);
-
-  useEffect(() => {
     setProductDisplayed(productsProcessed.current);
-  }, [productsProcessed]);
+  }, [products, productsProcessed]);
 
   const handleChange = (e) => {
     search.current = e.target.value;
@@ -45,7 +42,7 @@ export const Shop = () => {
         placeholder="Search product..."
       />
       </div>
-        {products.length ? (
+        {products.length > 0 ? (
           productsDisplayed.length ? productsDisplayed.map((product) => (
             <Product
               id={product.id}
