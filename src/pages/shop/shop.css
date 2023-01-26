@@ -112,6 +112,10 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .modern-input {
+    width: 100%;
+  }
+
   .shop {
     flex-direction: column;
   }
