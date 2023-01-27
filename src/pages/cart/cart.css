@@ -58,6 +58,10 @@
   cursor: pointer;
 }
 
+.checkout button:hover {
+  background-color: #00606b
+}
+
 .spinner {
   position: absolute;
   top: 50%;
