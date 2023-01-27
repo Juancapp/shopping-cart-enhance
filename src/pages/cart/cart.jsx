@@ -6,7 +6,7 @@ import { CartItem } from "./cart-item";
 import "./cart.css";
 
 export const Cart = () => {
-  const { cartItems, products, resetCount,  fetched } = useContext(ShopContext);
+  const { cartItems, products, resetCount, fetched } = useContext(ShopContext);
   const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -16,12 +16,13 @@ export const Cart = () => {
     setIsToConfirm(false);
   };
 
-  const handleClose = async () => {
+  const handleClose = () => {
     setIsToConfirm(true);
-    if(!isToConfirm) {
+    if (!isToConfirm) {
       resetCount();
-      navigate("/");
-      // window.location.reload(true);
+      if (fetched === true) {
+        navigate("/");
+      }
     }
   };
 

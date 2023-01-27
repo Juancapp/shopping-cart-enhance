@@ -5,16 +5,19 @@ export const ShopContext = createContext(null);
 const url = "https://fakestoreapi.com/products";
 
 const getProducts = async (setProducts, setFetched) => {
+  setProducts([]);
   setFetched(false);
   const result = await axios.get(url);
   setProducts(result.data);
-  setFetched(true);
+  if(result.data.length > 0) {
+    setFetched(true);
+  }
 };
 
 export const ShopContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState({});
   const [products, setProducts] = useState([]);
-  const [fetched, setFetched] = useState(false);;
+  const [fetched, setFetched] = useState(false);
 
   useEffect(() => {
     getProducts(setProducts, setFetched);
