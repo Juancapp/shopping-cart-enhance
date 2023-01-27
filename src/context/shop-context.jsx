@@ -2,20 +2,21 @@ import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
 export const ShopContext = createContext(null);
+const url = "https://fakestoreapi.com/products";
+
+const getProducts = async (setProducts, setFetched) => {
+  const result = await axios.get(url);
+  setProducts(result.data);
+  setFetched(true);
+};
 
 export const ShopContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState({});
   const [products, setProducts] = useState([]);
-  const [fetched, setFetched] = useState(false);
-  const url = "https://fakestoreapi.com/products";
+  const [fetched, setFetched] = useState(false);;
 
   useEffect(() => {
-    const getProducts = async () => {
-      const result = await axios.get(url);
-      setProducts(result.data);
-      setFetched(true);
-    };
-    getProducts();
+    getProducts(setProducts, setFetched);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -41,11 +42,7 @@ export const ShopContextProvider = ({ children }) => {
   };
 
   const resetCount = () => {
-    setCartItems((prev) => {
-      for (let i = 1; i < products.length + 1; i++) {
-        prev[i] = 0;
-      }
-    });
+    getProducts(setProducts, setFetched);
   };
 
   const contextValue = {
