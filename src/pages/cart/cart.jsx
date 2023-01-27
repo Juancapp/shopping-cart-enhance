@@ -42,7 +42,7 @@ export const Cart = () => {
         <Modal
           setIsOpen={setIsOpen}
           handleConfirm={handleConfirm}
-          price={totalPrice}
+          price={Math.round(totalPrice * 100) / 100}
           isToConfirm={isToConfirm}
           handleClose={handleClose}
         />
@@ -64,7 +64,7 @@ export const Cart = () => {
             </div>
             {totalPrice > 0 ? (
               <div className="checkout">
-                <p>Subtotal ${totalPrice}</p>
+                <p>Subtotal ${Math.round(totalPrice * 100) / 100}</p>
                 <button onClick={() => navigate("/")}>Continue Shopping</button>
                 <button onClick={() => setIsOpen(true)}>Checkout</button>
               </div>
