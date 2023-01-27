@@ -5,6 +5,7 @@ export const ShopContext = createContext(null);
 const url = "https://fakestoreapi.com/products";
 
 const getProducts = async (setProducts, setFetched) => {
+  setFetched(false);
   const result = await axios.get(url);
   setProducts(result.data);
   setFetched(true);
@@ -50,6 +51,7 @@ export const ShopContextProvider = ({ children }) => {
     addToCart,
     removeFromCart,
     updateCartItemCount,
+    getProducts,
     resetCount,
     products,
     fetched,

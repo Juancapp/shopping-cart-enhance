@@ -16,7 +16,7 @@ export const Cart = () => {
     setIsToConfirm(false);
   };
 
-  const handleClose = () => {
+  const handleClose = async () => {
     setIsToConfirm(true);
     if(!isToConfirm) {
       resetCount();
