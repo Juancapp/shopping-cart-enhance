@@ -29,7 +29,7 @@ function Modal({
         </p>
         <div className="buttons">
           <button
-            className="button"
+            className={`button ${isToConfirm && "cancel-button"}`}
             onClick={() => {
               setIsOpen(false);
               handleClose();
