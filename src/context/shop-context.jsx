@@ -4,15 +4,23 @@ import axios from "axios";
 export const ShopContext = createContext(null);
 const url = "https://fakestoreapi.com/products";
 
-const getProducts = async (setProducts, setFetched, setInitialProductsLength) => {
-  setProducts([]);
-  setFetched(false);
-  const result = await axios.get(url);
-  setProducts(result.data);
-  if (result.data.length > 0) {
-    setFetched(true);
+const getProducts = async (
+  setProducts,
+  setFetched,
+  setInitialProductsLength
+) => {
+  try {
+    setProducts([]);
+    setFetched(false);
+    const result = await axios.get(url);
+    setProducts(result.data);
+    if (result.data.length > 0) {
+      setFetched(true);
+    }
+    setInitialProductsLength(result.data.length);
+  } catch (error) {
+    console.log(error);
   }
-  setInitialProductsLength(result.data.length);
 };
 
 export const ShopContextProvider = ({ children }) => {
@@ -23,15 +31,21 @@ export const ShopContextProvider = ({ children }) => {
   const [initialProductsLength, setInitialProductsLength] = useState([]);
 
   const getProductsByCategory = async (param) => {
-    setProducts([]);
-    setFetched(false);
-    const result =
-      param !== "all"
-        ? await axios.get(`https://fakestoreapi.com/products/category/${param}`)
-        : await axios.get(url);
-    setProducts(result.data);
-    if (result.data.length > 0) {
-      setFetched(true);
+    try {
+      setProducts([]);
+      setFetched(false);
+      const result =
+        param !== "all"
+          ? await axios.get(
+              `https://fakestoreapi.com/products/category/${param}`
+            )
+          : await axios.get(url);
+      setProducts(result.data);
+      if (result.data.length > 0) {
+        setFetched(true);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -45,10 +59,9 @@ export const ShopContextProvider = ({ children }) => {
       cart[i] = 0;
     }
     setCartItems(cart);
-    setProductsToCart(products)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialProductsLength])
-
+    setProductsToCart(products);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialProductsLength]);
 
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
