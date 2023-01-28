@@ -6,7 +6,7 @@ import { CartItem } from "./cart-item";
 import "./cart.css";
 
 export const Cart = () => {
-  const { cartItems, products, resetCount, fetched } = useContext(ShopContext);
+  const { cartItems, resetCount, fetched, productsToCart } = useContext(ShopContext);
   const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -28,13 +28,13 @@ export const Cart = () => {
 
   useEffect(() => {
     setTotalPrice(0);
-    for (let i = 1; i < products.length + 1; i++) {
+    for (let i = 1; i < productsToCart.length + 1; i++) {
       if (cartItems[i] !== 0) {
-        const product = products.find((product) => product.id === i);
+        const product = productsToCart.find((product) => product.id === i);
         setTotalPrice((price) => (price += product.price * cartItems[i]));
       }
     }
-  }, [cartItems, products]);
+  }, [cartItems, productsToCart]);
 
   return (
     <>
@@ -54,7 +54,7 @@ export const Cart = () => {
         {fetched === true ? (
           <>
             <div className="cartItems">
-              {products.map((product) => {
+              {productsToCart.map((product) => {
                 if (cartItems[product.id] !== 0) {
                   return <CartItem data={product} />;
                 } else {
