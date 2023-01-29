@@ -13,7 +13,7 @@ import "./shop.css";
 export const Shop = () => {
   const { products, getProductsByCategory } = useContext(ShopContext);
   const [productsToDisplay, setProductsToDisplay] = useState([]);
-  const search = useRef();
+  const [search, setSearch] = useState();
   const category = useRef("all");
   const [orderPrice, setOrderPrice] = useState("default");
 
@@ -21,27 +21,28 @@ export const Shop = () => {
     setProductsToDisplay(products);
   }, [products]);
 
-  useEffect(() => {
-    console.log(orderPrice);
+  const orderProducts = () => {
     const orderedProducts = productsToDisplay.sort((a, b) => {
       if (orderPrice === "ascending") return a.price - b.price;
       if (orderPrice === "descending") return b.price - a.price;
       return a.id - b.id;
     });
-    setProductsToDisplay(orderedProducts);
+    return orderedProducts;
+  };
+
+  useEffect(() => {
+    orderProducts();
+    setProductsToDisplay(orderProducts());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [orderPrice]);
+  }, [orderPrice, orderProducts()]);
 
   const handleChange = (e) => {
-    search.current = e.target.value;
+    setSearch(e.target.value);
   };
 
   const onClickSearchBttn = () => {
     let productsFiltered = productsToDisplay.filter((product) =>
-      product.title
-        .toString()
-        .toLowerCase()
-        .includes(search.current.toLowerCase())
+      product.title.toString().toLowerCase().includes(search.toLowerCase())
     );
     setProductsToDisplay(productsFiltered);
   };
