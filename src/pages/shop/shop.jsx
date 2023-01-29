@@ -12,28 +12,45 @@ import "./shop.css";
 
 export const Shop = () => {
   const { products, getProductsByCategory } = useContext(ShopContext);
-  const productsProcessed = useRef([]);
-  const [productsDisplayed, setProductDisplayed] = useState([]);
+  const [productsToDisplay, setProductsToDisplay] = useState([]);
   const search = useRef();
   const category = useRef("all");
+  const [orderPrice, setOrderPrice] = useState("default");
 
   useEffect(() => {
-    productsProcessed.current = products;
-    setProductDisplayed(productsProcessed.current);
-  }, [products, productsProcessed]);
+    setProductsToDisplay(products);
+  }, [products]);
+
+  useEffect(() => {
+    console.log(orderPrice);
+    const orderedProducts = productsToDisplay.sort((a, b) => {
+      if (orderPrice === "ascending") return a.price - b.price;
+      if (orderPrice === "descending") return b.price - a.price;
+      return a.id - b.id;
+    });
+    setProductsToDisplay(orderedProducts);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orderPrice]);
 
   const handleChange = (e) => {
     search.current = e.target.value;
-    let productFiltered = productsProcessed.current.filter((product) =>
+  };
+
+  const onClickSearchBttn = () => {
+    let productsFiltered = productsToDisplay.filter((product) =>
       product.title
         .toString()
         .toLowerCase()
         .includes(search.current.toLowerCase())
     );
-    setProductDisplayed(productFiltered);
+    setProductsToDisplay(productsFiltered);
   };
 
-  const handleSelect = (e) => {
+  const handleSelectOrderPrice = (e) => {
+    setOrderPrice(e.target.value);
+  };
+
+  const handleSelectCategory = (e) => {
     category.current = e.target.value;
     getProductsByCategory(category.current);
   };
@@ -41,39 +58,43 @@ export const Shop = () => {
   return (
     <div className="shop">
       <div className="shopTitle">
-        <h4>Offers!</h4>
+        <h4>Offers! {`(Work in progress)`}</h4>
       </div>
+      <div className="searchBar">
+        <MagnifyingGlass size={24} />
+        <input
+          type="text"
+          className="modern-input"
+          onChange={handleChange}
+          ref={search}
+          placeholder="Search product..."
+        />
+        <button onClick={onClickSearchBttn}>Search</button>{" "}
+      </div>
+      <select
+        name="selectCategory "
+        id="selectCategory"
+        onChange={(e) => handleSelectCategory(e)}
+      >
+        <option value="all">All</option>
+        <option value={mensClothing}>Men's Clothing</option>
+        <option value={womensClothing}>Women's Clothing</option>
+        <option value={jewelery}>Jewelery</option>
+        <option value={electronics}>Electronics</option>
+      </select>
+      <select
+        name="orderPrice "
+        id="orderPrice"
+        onChange={(e) => handleSelectOrderPrice(e)}
+      >
+        <option value="default">Default</option>
+        <option value="ascending">Ascending</option>
+        <option value="descending">Descending</option>
+      </select>
       <div className="products">
-        <div className="searchBar">
-          <MagnifyingGlass size={24} />
-          <input
-            type="text"
-            className="modern-input"
-            onChange={handleChange}
-            ref={search}
-            placeholder="Search product..."
-          />
-          <select name="selectCategory " id="selectCategory" onChange={(e) => handleSelect(e)}>
-            <option value='all' onSelect={() => handleSelect()}>
-              All
-            </option>
-            <option value={mensClothing} onSelect={() => handleSelect()}>
-              Men's Clothing
-            </option>
-            <option value={womensClothing} onSelect={() => handleSelect()}>
-              Women's Clothing
-            </option>
-            <option value={jewelery} onSelect={() => handleSelect()}>
-              Jewelery
-            </option>
-            <option value={electronics} onSelect={() => handleSelect()}>
-              Electronics
-            </option>
-          </select>
-        </div>
         {products.length > 0 ? (
-          productsDisplayed.length ? (
-            productsDisplayed.map((product) => (
+          productsToDisplay.length > 0 ? (
+            productsToDisplay.map((product) => (
               <Product
                 id={product.id}
                 title={product.title}

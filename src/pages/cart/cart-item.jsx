@@ -2,14 +2,13 @@ import React, { useContext } from "react";
 import { ShopContext } from "../../context/shop-context";
 import { XCircle } from "phosphor-react";
 
-export const CartItem = (props) => {
-  const { id, title, price, image } = props.data;
+export const CartItem = ({ id, title, price, image }) => {
   const { addToCart, cartItems, removeFromCart, updateCartItemCount } =
     useContext(ShopContext);
   const cartItemAmount = cartItems[id];
 
   return (
-    <div className="cartItem">
+    <div className="cartItem" key={id}>
       <img src={image} alt={title} />
       <div className="description">
         <button

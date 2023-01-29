@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { ShopContext } from "../../context/shop-context";
 
-export const Product = ({ id, title, price, image, description }) => {
+export const Product = ({ id, title, price, image }) => {
   const { addToCart, cartItems } = useContext(ShopContext);
   const cartItemAmount = cartItems[id];
   return (
-    <div className="product">
+    <div className="product" key={id}>
       <img src={image} alt={title} />
       <div className="description">
         <p>
