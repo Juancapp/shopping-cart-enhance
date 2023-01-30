@@ -81,11 +81,20 @@
   cursor: pointer;
 }
 
-.searchBar {
+.inputs {
+  display: flex;
   width: 90%;
   padding-bottom: 80px;
+}
+
+.searchBar {
   display: flex;
   align-items: center;
+  width: 30%;
+}
+
+.searchBar input {
+  width: 100%
 }
 
 .modern-input {
