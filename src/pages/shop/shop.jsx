@@ -16,7 +16,8 @@ export const Shop = () => {
   const [productsToDisplay, setProductsToDisplay] = useState([]);
   const search = useRef("");
   const category = useRef("all");
-  const [orderPrice, setOrderPrice] = useState("default");
+  const [orderItem, setOrderItem] = useState("default");
+  const [item, setItem] = useState("rate");
 
   useEffect(() => {
     setProductsToDisplay(
@@ -31,8 +32,22 @@ export const Shop = () => {
 
   function orderProducts() {
     const orderedProducts = productsToDisplay.sort((a, b) => {
-      if (orderPrice === "ascending") return a.price - b.price;
-      if (orderPrice === "descending") return b.price - a.price;
+      if (orderItem === "ascending") {
+        if (item === "price") {
+          return a.price - b.price;
+        }
+        if (item === "rate") {
+          return a.rating.rate - b.rating.rate;
+        }
+      }
+      if (orderItem === "descending") {
+        if (item === "price") {
+          return b.price - a.price;
+        }
+        if (item === "rate") {
+          return b.rating.rate - a.rating.rate;
+        }
+      }
       return a.id - b.id;
     });
     return orderedProducts;
@@ -59,8 +74,12 @@ export const Shop = () => {
     setProductsToDisplay(productsFiltered);
   };
 
-  const handleSelectOrderPrice = (e) => {
-    setOrderPrice(e.target.value);
+  const handleSelectItem = (e) => {
+    setItem(e.target.value);
+  };
+
+  const handleSelectOrderItem = (e) => {
+    setOrderItem(e.target.value);
   };
 
   const handleSelectCategory = (e) => {
@@ -76,35 +95,66 @@ export const Shop = () => {
       </div>
       <div className="inputs">
         <div className="searchBar">
-          <MagnifyingGlass size={24} />
           <input
             type="text"
             className="modern-input"
             onChange={handleChange}
             placeholder="Search product..."
           />
-          <button onClick={onClickSearchBttn}>Search</button>{" "}
+          <button onClick={onClickSearchBttn}>
+            {" "}
+            <MagnifyingGlass size={24} />
+          </button>{" "}
         </div>
-        <select
-          name="selectCategory "
-          id="selectCategory"
-          onChange={(e) => handleSelectCategory(e)}
-        >
-          <option value="all">All</option>
-          <option value={mensClothing}>Men's Clothing</option>
-          <option value={womensClothing}>Women's Clothing</option>
-          <option value={jewelery}>Jewelery</option>
-          <option value={electronics}>Electronics</option>
-        </select>
-        <select
-          name="orderPrice "
-          id="orderPrice"
-          onChange={(e) => handleSelectOrderPrice(e)}
-        >
-          <option value="default">Default</option>
-          <option value="ascending">Ascending</option>
-          <option value="descending">Descending</option>
-        </select>
+        <label for="selectCategory">
+          Category:
+          <select
+            name="selectCategory "
+            id="selectCategory"
+            onChange={(e) => handleSelectCategory(e)}
+          >
+            <option value="all">All</option>
+            <option value={mensClothing}>Men's Clothing</option>
+            <option value={womensClothing}>Women's Clothing</option>
+            <option value={jewelery}>Jewelery</option>
+            <option value={electronics}>Electronics</option>
+          </select>
+        </label>
+        <label for="item">
+          Select Order
+          <select
+            name="item"
+            id="item"
+            onChange={(e) => handleSelectOrderItem(e)}
+          >
+            <option value="default">Default</option>
+            <option value="ascending">Ascending</option>
+            <option value="descending">Descending</option>
+          </select>
+        </label>
+        <div>
+          <p>Order by:</p>
+          <label for="rate">
+            Rate:
+            <input
+              type="radio"
+              name="orderItem"
+              id="rate"
+              value="rate"
+              onChange={(e) => handleSelectItem(e)}
+            ></input>
+          </label>
+          <label for="price">
+            Price:
+            <input
+              type="radio"
+              name="orderItem"
+              id="price"
+              value="price"
+              onChange={(e) => handleSelectItem(e)}
+            ></input>
+          </label>
+        </div>
       </div>
       <div className="products">
         {products.length > 0 ? (
@@ -116,7 +166,9 @@ export const Shop = () => {
                 price={product.price}
                 image={product.image}
                 description={product.description}
+                rate={product.rating.rate}
                 key={product.id}
+                category={product.category}
               />
             ))
           ) : (
