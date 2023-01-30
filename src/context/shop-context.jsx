@@ -80,6 +80,20 @@ export const ShopContextProvider = ({ children }) => {
     getProducts(setProducts, setFetched, setInitialProductsLength);
   };
 
+  const getProductsNavBar = async () => {
+    try {
+      setProducts([]);
+      setFetched(false);
+      const result = await axios.get(url);
+      setProducts(result.data);
+      if (result.data.length > 0) {
+        setFetched(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const contextValue = {
     cartItems,
     addToCart,
@@ -90,6 +104,7 @@ export const ShopContextProvider = ({ children }) => {
     resetCount,
     products,
     fetched,
+    getProductsNavBar,
     getProductsByCategory,
   };
 
