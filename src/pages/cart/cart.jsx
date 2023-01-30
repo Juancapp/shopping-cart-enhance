@@ -6,7 +6,8 @@ import { CartItem } from "./cart-item";
 import "./cart.css";
 
 export const Cart = () => {
-  const { cartItems, resetCount, fetched, productsToCart } = useContext(ShopContext);
+  const { cartItems, resetCount, fetched, productsToCart } =
+    useContext(ShopContext);
   const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -56,7 +57,7 @@ export const Cart = () => {
             <div className="cartItems">
               {productsToCart.map((product) => {
                 if (cartItems[product.id] !== 0) {
-                  return <CartItem data={product} />;
+                  return <CartItem key={product.id} data={product} />;
                 } else {
                   return null;
                 }

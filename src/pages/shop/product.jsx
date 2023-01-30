@@ -5,7 +5,7 @@ export const Product = ({ id, title, price, image }) => {
   const { addToCart, cartItems } = useContext(ShopContext);
   const cartItemAmount = cartItems[id];
   return (
-    <div className="product" key={id}>
+    <div className="product">
       <img src={image} alt={title} />
       <div className="description">
         <p>

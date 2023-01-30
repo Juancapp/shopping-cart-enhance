@@ -18,7 +18,7 @@ export const Navbar = () => {
 
   return (
     <div className="navbar">
-    <div class="logo">
+    <div className="logo">
       <Storefront size={32} color="white"/>
       <p>Cocoa</p>
     </div>
