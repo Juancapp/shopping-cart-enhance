@@ -11,24 +11,32 @@ import {
 import "./shop.css";
 
 export const Shop = () => {
-  const { products, getProductsByCategory } = useContext(ShopContext);
+  const { products, getProductsByCategory, errorMessage } =
+    useContext(ShopContext);
   const [productsToDisplay, setProductsToDisplay] = useState([]);
   const search = useRef("");
   const category = useRef("all");
   const [orderPrice, setOrderPrice] = useState("default");
 
   useEffect(() => {
-    setProductsToDisplay(products);
+    setProductsToDisplay(
+      products.filter((product) => {
+        return product.title
+          .toString()
+          .toLowerCase()
+          .includes(search.current.toLowerCase());
+      })
+    );
   }, [products]);
 
-  const orderProducts = () => {
+  function orderProducts() {
     const orderedProducts = productsToDisplay.sort((a, b) => {
       if (orderPrice === "ascending") return a.price - b.price;
       if (orderPrice === "descending") return b.price - a.price;
       return a.id - b.id;
     });
     return orderedProducts;
-  };
+  }
 
   useEffect(() => {
     setProductsToDisplay(orderProducts());
@@ -62,6 +70,7 @@ export const Shop = () => {
 
   return (
     <div className="shop">
+      {errorMessage && <p>An error has ocurred: {errorMessage}</p>}
       <div className="shopTitle">
         <h4>Offers! {`(Work in progress)`}</h4>
       </div>
@@ -72,7 +81,6 @@ export const Shop = () => {
             type="text"
             className="modern-input"
             onChange={handleChange}
-            ref={search}
             placeholder="Search product..."
           />
           <button onClick={onClickSearchBttn}>Search</button>{" "}

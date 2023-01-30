@@ -7,7 +7,8 @@ const url = "https://fakestoreapi.com/products";
 const getProducts = async (
   setProducts,
   setFetched,
-  setInitialProductsLength
+  setInitialProductsLength,
+  setErrorMessage
 ) => {
   try {
     setProducts([]);
@@ -20,6 +21,7 @@ const getProducts = async (
     setInitialProductsLength(result.data.length);
   } catch (error) {
     console.log(error);
+    setErrorMessage(error.message);
   }
 };
 
@@ -29,6 +31,7 @@ export const ShopContextProvider = ({ children }) => {
   const [fetched, setFetched] = useState(false);
   const [productsToCart, setProductsToCart] = useState([]);
   const [initialProductsLength, setInitialProductsLength] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const getProductsByCategory = async (param) => {
     try {
@@ -46,11 +49,17 @@ export const ShopContextProvider = ({ children }) => {
       }
     } catch (error) {
       console.log(error);
+      setErrorMessage(error.message);
     }
   };
 
   useEffect(() => {
-    getProducts(setProducts, setFetched, setInitialProductsLength);
+    getProducts(
+      setProducts,
+      setFetched,
+      setInitialProductsLength,
+      setErrorMessage
+    );
   }, []);
 
   useEffect(() => {
@@ -77,7 +86,12 @@ export const ShopContextProvider = ({ children }) => {
 
   const resetCount = () => {
     setInitialProductsLength(0);
-    getProducts(setProducts, setFetched, setInitialProductsLength);
+    getProducts(
+      setProducts,
+      setFetched,
+      setInitialProductsLength,
+      setErrorMessage
+    );
   };
 
   const getProductsNavBar = async () => {
@@ -99,6 +113,7 @@ export const ShopContextProvider = ({ children }) => {
     addToCart,
     removeFromCart,
     updateCartItemCount,
+    errorMessage,
     getProducts,
     productsToCart,
     resetCount,
