@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { ShopContext } from "../../context/shop-context";
 import { Product } from "./product";
-import { MagnifyingGlass } from "phosphor-react";
 import {
   mensClothing,
   womensClothing,
@@ -9,15 +8,21 @@ import {
   electronics,
 } from "../../category";
 import "./shop.css";
+import { Select } from "../../component/Select/Select";
 
 export const Shop = () => {
-  const { products, getProductsByCategory, errorMessage } =
-    useContext(ShopContext);
-  const [productsToDisplay, setProductsToDisplay] = useState([]);
+  const {
+    products,
+    getProductsByCategory,
+    errorMessage,
+    productsToDisplay,
+    setProductsToDisplay,
+    setOrderItem,
+    setItem,
+    orderProducts
+  } = useContext(ShopContext);
   const search = useRef("");
   const category = useRef("all");
-  const [orderItem, setOrderItem] = useState("default");
-  const [item, setItem] = useState("rate");
 
   useEffect(() => {
     setProductsToDisplay(
@@ -28,51 +33,13 @@ export const Shop = () => {
           .includes(search.current.toLowerCase());
       })
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [products]);
-
-  function orderProducts() {
-    const orderedProducts = productsToDisplay.sort((a, b) => {
-      if (orderItem === "ascending") {
-        if (item === "price") {
-          return a.price - b.price;
-        }
-        if (item === "rate") {
-          return a.rating.rate - b.rating.rate;
-        }
-      }
-      if (orderItem === "descending") {
-        if (item === "price") {
-          return b.price - a.price;
-        }
-        if (item === "rate") {
-          return b.rating.rate - a.rating.rate;
-        }
-      }
-      return a.id - b.id;
-    });
-    return orderedProducts;
-  }
 
   useEffect(() => {
     setProductsToDisplay(orderProducts());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderProducts()]);
-
-  const handleChange = (e) => {
-    search.current = e.target.value;
-  };
-
-  const onClickSearchBttn = () => {
-    setProductsToDisplay(products);
-    orderProducts();
-    let productsFiltered = products.filter((product) =>
-      product.title
-        .toString()
-        .toLowerCase()
-        .includes(search.current.toLowerCase())
-    );
-    setProductsToDisplay(productsFiltered);
-  };
 
   const handleSelectItem = (e) => {
     setItem(e.target.value);
@@ -84,6 +51,7 @@ export const Shop = () => {
 
   const handleSelectCategory = (e) => {
     category.current = e.target.value;
+    console.log(category.current);
     getProductsByCategory(category.current);
   };
 
@@ -94,7 +62,7 @@ export const Shop = () => {
         <h4>Offers! {`(Work in progress)`}</h4>
       </div>
       <div className="inputs">
-        <div className="searchBar">
+        {/* <div className="searchBar">
           <input
             type="text"
             className="modern-input"
@@ -105,33 +73,27 @@ export const Shop = () => {
             {" "}
             <MagnifyingGlass size={24} />
           </button>{" "}
-        </div>
-        <label for="selectCategory">
-          Category:
-          <select
-            name="selectCategory "
-            id="selectCategory"
-            onChange={(e) => handleSelectCategory(e)}
-          >
-            <option value="all">All</option>
-            <option value={mensClothing}>Men's Clothing</option>
-            <option value={womensClothing}>Women's Clothing</option>
-            <option value={jewelery}>Jewelery</option>
-            <option value={electronics}>Electronics</option>
-          </select>
-        </label>
-        <label for="item">
-          Select Order
-          <select
-            name="item"
-            id="item"
-            onChange={(e) => handleSelectOrderItem(e)}
-          >
-            <option value="default">Default</option>
-            <option value="ascending">Ascending</option>
-            <option value="descending">Descending</option>
-          </select>
-        </label>
+        </div> */}
+        <Select
+          name="selectCategory"
+          labelTitle="Category:"
+          optionLabel={[
+            "All",
+            `Men's Clothing`,
+            `Women's Clothing`,
+            "Jewelery",
+            "Electronics",
+          ]}
+          values={["all", mensClothing, womensClothing, jewelery, electronics]}
+          handleChange={(e) => handleSelectCategory(e)}
+        />
+        <Select
+          name="item"
+          labelTitle="Select Order:"
+          optionLabel={["Default", "Ascending", "Descending"]}
+          values={["default", "ascending", "descending"]}
+          handleChange={(e) => handleSelectOrderItem(e)}
+        />
         <div>
           <p>Order by:</p>
           <label for="rate">

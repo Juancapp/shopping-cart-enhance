@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 
 export const ShopContext = createContext(null);
@@ -8,7 +8,7 @@ const getProducts = async (
   setProducts,
   setFetched,
   setInitialProductsLength,
-  setErrorMessage
+  setErrorMessage,
 ) => {
   try {
     setProducts([]);
@@ -32,6 +32,15 @@ export const ShopContextProvider = ({ children }) => {
   const [productsToCart, setProductsToCart] = useState([]);
   const [initialProductsLength, setInitialProductsLength] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [productsToDisplay, setProductsToDisplay] = useState([]);
+  const search = useRef("");
+  const [orderItem, setOrderItem] = useState("default");
+  const [item, setItem] = useState("rate");
+
+  const handleSearch = (e) => {
+    search.current= e.target.value;
+    console.log(search.current)
+  };
 
   const getProductsByCategory = async (param) => {
     try {
@@ -94,6 +103,59 @@ export const ShopContextProvider = ({ children }) => {
     );
   };
 
+  useEffect(() => {
+    setProductsToDisplay(
+      products.filter((product) => {
+        return product.title
+          .toString()
+          .toLowerCase()
+          .includes(search.current.toLowerCase());
+      })
+    );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [products]);
+
+
+  useEffect(() => {
+    setProductsToDisplay(orderProducts());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orderProducts()]);
+
+  function orderProducts() {
+    const orderedProducts = productsToDisplay.sort((a, b) => {
+      if (orderItem === "ascending") {
+        if (item === "price") {
+          return a.price - b.price;
+        }
+        if (item === "rate") {
+          return a.rating.rate - b.rating.rate;
+        }
+      }
+      if (orderItem === "descending") {
+        if (item === "price") {
+          return b.price - a.price;
+        }
+        if (item === "rate") {
+          return b.rating.rate - a.rating.rate;
+        }
+      }
+      return a.id - b.id;
+    });
+    return orderedProducts;
+  }
+
+  const onClickSearchBttn = () => {
+    setProductsToDisplay(products);
+    orderProducts();
+    let productsFiltered = products.filter((product) =>
+      product.title
+        .toString()
+        .toLowerCase()
+        .includes(search.current.toLowerCase())
+    );
+    setProductsToDisplay(productsFiltered);
+  };
+
   const getProductsNavBar = async () => {
     try {
       setProducts([]);
@@ -116,11 +178,20 @@ export const ShopContextProvider = ({ children }) => {
     errorMessage,
     getProducts,
     productsToCart,
+    setProductsToDisplay,
+    productsToDisplay,
+    orderProducts,
     resetCount,
+    setItem,
+    setOrderItem,
+    orderItem,
     products,
     fetched,
     getProductsNavBar,
     getProductsByCategory,
+    handleSearch,
+    search,
+    onClickSearchBttn
   };
 
   return (

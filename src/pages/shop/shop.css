@@ -83,57 +83,39 @@
 
 .inputs {
   display: flex;
-  width: 90%;
-  padding-bottom: 80px;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  padding-block: 1%;
   gap: 2rem;
+  background-color: #0952562d;
 }
 
-.searchBar {
+.inputs div p {
+  margin: 0;
+}
+
+.inputs div:last-child {
   display: flex;
-  align-items: center;
-  width: 30%;
+  flex-direction: column;
 }
 
 .inputs select {
-  padding: 0.75em 1em;
+  padding: 0.70em 1em;
   border-radius: 1em;
   border: 1px solid #d5d5d5;
   background-color: #fff;
   font-size: 1em;
   width: 100%;
-  box-sizing: border-box;
-}
-
-.inputs button {
-  width: 40px;
   height: 40px;
-  border-radius: 1em;
-  border: 1px solid #d5d5d5;
-  background-color: #fff;
-  font-size: 1em;
-  cursor: pointer;
-  color: #333;
+  box-sizing: border-box;
 }
 
 .searchBar input {
   width: 100%;
 }
 
-.modern-input {
-  padding: 0.75em 1em;
-  border-radius: 1em;
-  border: 1px solid #d5d5d5;
-  background-color: #fff;
-  font-size: 1em;
-  width: 20%;
-  box-sizing: border-box;
-}
 
-.modern-input:hover,
-.modern-input:focus {
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-}
 
 @keyframes spin {
   to {
