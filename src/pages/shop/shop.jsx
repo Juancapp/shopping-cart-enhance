@@ -81,7 +81,7 @@ export const Shop = () => {
         />
         <div>
           <p>Order by:</p>
-          <label for="rate">
+          <label htmlFor="rate">
             Rate:
             <input
               type="radio"
@@ -91,7 +91,7 @@ export const Shop = () => {
               onChange={(e) => handleSelectItem(e)}
             ></input>
           </label>
-          <label for="price">
+          <label htmlFor="price">
             Price:
             <input
               type="radio"

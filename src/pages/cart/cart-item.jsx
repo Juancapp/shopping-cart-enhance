@@ -12,12 +12,11 @@ export const CartItem = (prop) => {
     <div className="cartItem">
       <img src={image} alt={title} />
       <div className="description">
-        <button
+        <XCircle
           className="deleteItem"
+          size={28}
           onClick={() => updateCartItemCount(0, id)}
-        >
-          <XCircle size={28} />
-        </button>
+        />
         <p>
           <b>{title}</b>
         </p>
