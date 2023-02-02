@@ -26,7 +26,7 @@
   height: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content:center;
 }
 
 .deleteBttn {
@@ -40,7 +40,6 @@
 }
 
 .buttonsContainer {
-  /* border: 1px solid black; */
   text-align: center;
 }
 
@@ -59,16 +58,16 @@
 .product {
   width: 300px;
   border-radius: 7px;
-  height: 450px;
+  height: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 
 .product img {
   width: 49%;
-  height: 45%;
+  height: 52%;
 }
 
 .product p {
@@ -89,6 +88,20 @@
   padding-top: 5px;
   padding-bottom: 5px;
   border-radius: 7px;
+}
+
+.addToCartBttn p {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  color: white;
+  background-color: #095256;
+  border-radius: 50%;
+}
+
+.addToCartBttn:hover p {
+  color: #095256;
+  background-color: white;
 }
 
 .addToCartBttn:hover {

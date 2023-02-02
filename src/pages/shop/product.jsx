@@ -27,7 +27,7 @@ export const Product = ({ id, title, price, image, rate, category }) => {
           />
         )}
         <button className="addToCartBttn" onClick={() => addToCart(id)}>
-          Add to Cart {cartItemAmount > 0 && `(${cartItemAmount})`}
+          Add to Cart {cartItemAmount > 0 && <p>{cartItemAmount}</p>}
         </button>
       </div>
     </div>
