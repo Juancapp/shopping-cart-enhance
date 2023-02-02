@@ -49,9 +49,7 @@ export const Cart = () => {
         />
       )}
       <div className="cart">
-        <div>
-          <h1>Cart Items</h1>
-        </div>
+        <h1>Cart Items</h1>
         {fetched === true ? (
           <>
             <div className="cartItems">
@@ -66,8 +64,12 @@ export const Cart = () => {
             {totalPrice > 0 ? (
               <div className="checkout">
                 <p>Subtotal ${Math.round(totalPrice * 100) / 100}</p>
-                <button onClick={() => navigate("/")}>Continue Shopping</button>
-                <button onClick={() => setIsOpen(true)}>Checkout</button>
+                <div className="buttons">
+                  <button onClick={() => navigate("/")}>
+                    Continue Shopping
+                  </button>
+                  <button onClick={() => setIsOpen(true)}>Checkout</button>
+                </div>
               </div>
             ) : (
               <h2>Your Cart is empty</h2>
