@@ -19,9 +19,19 @@ export const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div className="logo">
-        <Storefront size={32} color="white" />
-        <p>Cocoa</p>
+      <div className="links">
+        <div className="logo">
+          <Storefront size={32} color="white" />
+          <Link to="/" onClick={getProductsNavBar}>
+            <p>Cocoa</p>
+          </Link>
+        </div>
+        <div className="shopAndCart">
+          <Link to="/cart">
+            <ShoppingCart size={32} />
+          </Link>
+          {totalCartItems > 0 && <p className="circle">{totalCartItems}</p>}
+        </div>
       </div>
       <div className="searchBar">
         <input
@@ -33,15 +43,6 @@ export const Navbar = () => {
         <button onClick={() => onClickSearchBttn()}>
           <MagnifyingGlass size={24} className="searchBarBttn" />
         </button>
-      </div>
-      <div className="links">
-        <Link to="/" onClick={getProductsNavBar}>
-          Shop
-        </Link>
-        <Link to="/cart">
-          <ShoppingCart size={32} />
-        </Link>
-        {totalCartItems > 0 && <p>{`(${totalCartItems})`}</p>}
       </div>
     </div>
   );
