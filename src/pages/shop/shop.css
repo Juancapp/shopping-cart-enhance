@@ -91,6 +91,11 @@
   background-color: #0952562d;
 }
 
+.inputs label {
+  display: flex;
+  align-items:stretch
+}
+
 .inputs div p {
   margin: 0;
 }

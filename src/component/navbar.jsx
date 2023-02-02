@@ -5,7 +5,8 @@ import { ShopContext } from "../context/shop-context";
 import "./navbar.css";
 
 export const Navbar = () => {
-  const { cartItems, getProductsNavBar, handleSearch, onClickSearchBttn } = useContext(ShopContext);
+  const { cartItems, getProductsNavBar, handleSearch, onClickSearchBttn } =
+    useContext(ShopContext);
   const [totalCartItems, setTotalCartItems] = useState(0);
 
   useEffect(() => {
@@ -23,17 +24,16 @@ export const Navbar = () => {
         <p>Cocoa</p>
       </div>
       <div className="searchBar">
-          <input
-            type="text"
-            className="modern-input"
-            onChange={(e) => handleSearch(e)}
-            placeholder="Search product..."
-          />
-          <button onClick={() => onClickSearchBttn()}>
-            {" "}
-            <MagnifyingGlass size={24} Style={{color: 'white', }}/>
-          </button>{" "}
-        </div>
+        <input
+          type="text"
+          className="modern-input"
+          onChange={(e) => handleSearch(e)}
+          placeholder="Search product..."
+        />
+        <button onClick={() => onClickSearchBttn()}>
+          <MagnifyingGlass size={24} className="searchBarBttn" />
+        </button>
+      </div>
       <div className="links">
         <Link to="/" onClick={getProductsNavBar}>
           Shop

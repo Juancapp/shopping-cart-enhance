@@ -19,7 +19,7 @@ export const Shop = () => {
     setProductsToDisplay,
     setOrderItem,
     setItem,
-    orderProducts
+    orderProducts,
   } = useContext(ShopContext);
   const search = useRef("");
   const category = useRef("all");
@@ -58,22 +58,7 @@ export const Shop = () => {
   return (
     <div className="shop">
       {errorMessage && <p>An error has ocurred: {errorMessage}</p>}
-      <div className="shopTitle">
-        <h4>Offers! {`(Work in progress)`}</h4>
-      </div>
       <div className="inputs">
-        {/* <div className="searchBar">
-          <input
-            type="text"
-            className="modern-input"
-            onChange={handleChange}
-            placeholder="Search product..."
-          />
-          <button onClick={onClickSearchBttn}>
-            {" "}
-            <MagnifyingGlass size={24} />
-          </button>{" "}
-        </div> */}
         <Select
           name="selectCategory"
           labelTitle="Category:"
@@ -117,6 +102,9 @@ export const Shop = () => {
             ></input>
           </label>
         </div>
+      </div>
+      <div className="shopTitle">
+        <h4>Offers! {`(Work in progress)`}</h4>
       </div>
       <div className="products">
         {products.length > 0 ? (
