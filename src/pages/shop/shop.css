@@ -123,6 +123,12 @@
     width: 100%;
   }
 
+  .addToCartBttn:hover {
+    background-color: #095256;
+    color: white;
+    cursor: none;
+  }
+
   .inputs div:nth-child(2) {
     justify-content: space-between;
     margin-top: 10px;
