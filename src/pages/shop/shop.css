@@ -1,5 +1,4 @@
 .shopTitle {
-  margin-top: 100px;
   text-align: center;
   font-size: 40px;
 }
@@ -15,7 +14,9 @@
 }
 
 .shopTitle h4 {
-  color: #ff1100;
+  color: #333;
+  margin: 0;
+  margin-bottom: 70px;
 }
 
 .products {
@@ -23,7 +24,6 @@
   height: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
 }
 
@@ -50,8 +50,8 @@
 }
 
 .product img {
-  width: 200px;
-  height: 300px;
+  max-width: 150px;
+  max-height: auto;
 }
 
 .product .description {
@@ -120,10 +120,17 @@
   .inputs {
     gap: 7px;
     justify-content: flex-start;
+    padding-bottom: 10px;
   }
 
   .inputs div {
     justify-content: space-between;
+    width: 100%;
+  }
+
+  .inputs div:nth-child(2) {
+    justify-content: space-between;
+    margin-top: 10px;
     width: 100%;
   }
 

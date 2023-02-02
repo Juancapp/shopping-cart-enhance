@@ -104,7 +104,7 @@ export const Shop = () => {
         </div>
       </div>
       <div className="shopTitle">
-        <h4>Offers! {`(Work in progress)`}</h4>
+        <h4>Products {`(Work in progress)`}</h4>
       </div>
       <div className="products">
         {products.length > 0 ? (
