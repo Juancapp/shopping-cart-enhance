@@ -30,6 +30,7 @@
 .spinner {
   position: absolute;
   top: 50%;
+  left: 50%;
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -40,7 +41,7 @@
 
 .product {
   width: 500px;
-  border-radius: 15px;
+  border-radius: 7px;
   height: 350px;
   margin-bottom: 150px;
   display: flex;
@@ -67,7 +68,7 @@
   padding-right: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
-  border-radius: 15px;
+  border-radius: 7px;
 }
 
 .addToCartBttn:hover {

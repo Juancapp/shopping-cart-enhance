@@ -60,7 +60,7 @@
   align-items: center;
   padding: 0.3em 0;
   padding-left: 10px;
-  border-radius: 1em;
+  border-radius: 7px;
   border: 1px solid #d5d5d5;
   background-color: #fff;
   height: 40px;
@@ -73,15 +73,15 @@
   color: white;
   width: 55%;
   height: 100%;
-  border-start-end-radius: 1em;
-  border-end-end-radius: 1em;
+  border-start-end-radius: 7px;
+  border-end-end-radius: 7px;
 }
 
 .searchBar button {
   height: 40px;
   width: 60px;
-  border-start-end-radius: 1em;
-  border-end-end-radius: 1em;
+  border-start-end-radius: 7px;
+  border-end-end-radius: 7px;
   border: none;
   margin: 0;
   background-color: rgb(36, 36, 36);
