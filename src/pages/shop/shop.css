@@ -83,44 +83,32 @@
 
 .inputs {
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
   width: 100%;
-  padding-block: 1%;
-  gap: 2rem;
-  background-color: #0952562d;
+  align-items: center;
+  padding: 1% 14px;
+  gap: 4rem;
+  flex-wrap: wrap;
+  background-color: #095256;
+  box-sizing: border-box;
+  font-size: 17px;
 }
 
-.inputs label {
+.inputs div {
   display: flex;
-  align-items:6
+  align-items: center;
+  color: white;
 }
 
 .inputs div p {
   margin: 0;
+  color: white;
 }
 
 .inputs div:last-child {
-  display: flex;
-  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  gap: 10px;
 }
-
-.inputs select {
-  padding: 0.70em 1em;
-  border-radius: 1em;
-  border: 1px solid #d5d5d5;
-  background-color: #fff;
-  font-size: 1em;
-  width: 100%;
-  height: 40px;
-  box-sizing: border-box;
-}
-
-.searchBar input {
-  width: 100%;
-}
-
-
 
 @keyframes spin {
   to {
@@ -129,7 +117,19 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .modern-input {
+  .inputs {
+    gap: 7px;
+    justify-content: flex-start;
+  }
+
+  .inputs div {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .inputs div:last-child {
+    justify-content: flex-start;
+    gap: 20px;
     width: 100%;
   }
 

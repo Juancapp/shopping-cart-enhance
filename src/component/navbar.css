@@ -1,6 +1,6 @@
 .navbar {
   background-color: #095256;
-  padding: 10px 30px;
+  padding: 10px 14px;
   gap: 12px;
   display: flex;
   flex-direction: column;
@@ -50,6 +50,7 @@
   height: 20px;
   border-radius: 50%;
   font-weight: bold;
+  margin: 0;
 }
 
 .searchBar {

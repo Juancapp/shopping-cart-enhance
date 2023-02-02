@@ -74,7 +74,7 @@ export const Shop = () => {
         />
         <Select
           name="item"
-          labelTitle="Select Order:"
+          labelTitle="Order:"
           optionLabel={["Default", "Ascending", "Descending"]}
           values={["default", "ascending", "descending"]}
           handleChange={(e) => handleSelectOrderItem(e)}
