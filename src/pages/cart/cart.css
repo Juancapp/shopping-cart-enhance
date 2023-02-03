@@ -126,7 +126,7 @@ input::-webkit-inner-spin-button {
   }
   .checkout button {
     width: 100px;
-    height: 40px;
+    padding-inline: 20px;
   }
   .spinner {
     width: 150px;

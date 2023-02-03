@@ -117,4 +117,8 @@
   .contact div {
     width: 100%;
   }
+
+  button:hover, a:hover {
+    cursor: none;
+  }
 }
