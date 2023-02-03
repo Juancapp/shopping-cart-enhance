@@ -7,16 +7,16 @@ import {
   YoutubeLogo,
 } from "phosphor-react";
 import React from "react";
-import styles from "./footer.module.css";
+import "./footer.css";
 
 export const Footer = () => {
   return (
-    <div className={styles.footer}>
+    <div className="footer">
       <div className="contact">
         <div>
           <span>Subscribe to our newsletter</span>
           <div className="inputContainer">
-            <input type="text" />
+            <input type="text" className="input" placeholder="Email..."/>
             <button>Send</button>
           </div>
         </div>
@@ -38,15 +38,15 @@ export const Footer = () => {
       <div className="socialMedia">
         <span>Follow us on our networks</span>
         <div>
-          <LinkedinLogo color="white" size={40} weight="fill" />
-          <TwitterLogo color="white" size={40} weight="fill" />
-          <FacebookLogo color="white" size={40} weight="fill" />
-          <InstagramLogo color="white" size={40} weight="fill" />
-          <YoutubeLogo color="white" size={40} weight="fill" />
+          <LinkedinLogo className="icon" color="white" size={37} weight="fill" />
+          <TwitterLogo className="icon" color="white" size={37} weight="fill" />
+          <FacebookLogo className="icon" color="white" size={37} weight="fill" />
+          <InstagramLogo className="icon" color="white" size={37} weight="fill" />
+          <YoutubeLogo className="icon" color="white" size={37} weight="fill" />
         </div>
       </div>
       <span className="copyright">
-        © 2023 Cocoa | All rights reserved | See Terms and Conditions| View Privacy Policy | Contact: info@cocoamarket.com
+        © 2023 Cocoa | All rights reserved | <a href="">See Terms and Conditions</a> | <a href="">View Privacy Policy</a> | Contact: info@cocoamarket.com
       </span>
     </div>
   );

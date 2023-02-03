@@ -1,0 +1,120 @@
+.footer {
+  background-color: #095256;
+  color: white;
+  height: 350px;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.footer div {
+  width: 100%;
+}
+
+.contact {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16em;
+}
+
+.contact div {
+  display: flex;
+  width: max-content;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.contact div span {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.contact div:nth-child(1) span {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.contact .inputContainer {
+  flex-direction: row;
+}
+
+.contact a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+
+.copyright a {
+  text-decoration: none;
+  color: white;
+}
+
+.socialMedia {
+  text-align: center;
+}
+
+.copyright {
+  text-align: center;
+  font-size: small;
+}
+
+.input {
+  font-size: 14px;
+  width: 200px;
+  padding: 0.6em 0.4em;
+  border-radius: 6px;
+  border: 1px solid #d5d5d5;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.inputContainer button {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  min-width: 100px;
+  padding: 0.6em 0.4em;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.socialMedia span {
+  font-size: 14px;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.socialMedia div {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 0.8em;
+}
+
+.input:hover,
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (max-width: 768px) {
+  .footer {
+    height: 700px;
+  }
+
+  .contact {
+    gap: 3em;
+  }
+
+  .contact div {
+    width: 100%;
+  }
+}
