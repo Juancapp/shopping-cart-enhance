@@ -3,7 +3,6 @@ import axios from "axios";
 
 export const ShopContext = createContext(null);
 
-
 const getProducts = async (
   setProducts,
   setFetched,
