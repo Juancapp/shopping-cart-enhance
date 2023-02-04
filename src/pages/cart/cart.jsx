@@ -31,7 +31,7 @@ export const Cart = () => {
     setTotalPrice(0);
     for (let i = 1; i < productsToCart.length + 1; i++) {
       if (cartItems[i] !== 0) {
-        const product = productsToCart.find((product) => product.id === i);
+        const product = productsToCart.find((product) => product.productId === i);
         setTotalPrice((price) => (price += product.price * cartItems[i]));
       }
     }
@@ -54,8 +54,8 @@ export const Cart = () => {
           <>
             <div className="cartItems">
               {productsToCart.map((product) => {
-                if (cartItems[product.id] !== 0) {
-                  return <CartItem key={product.id} data={product} />;
+                if (cartItems[product.productId] !== 0) {
+                  return <CartItem key={product.productId} data={product} />;
                 } else {
                   return null;
                 }

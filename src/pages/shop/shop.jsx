@@ -111,13 +111,13 @@ export const Shop = () => {
           productsToDisplay.length > 0 ? (
             productsToDisplay.map((product) => (
               <Product
-                id={product.id}
+                productId={product.productId}
                 title={product.title}
                 price={product.price}
                 image={product.image}
                 description={product.description}
                 rate={product.rating.rate}
-                key={product.id}
+                key={product.productId}
                 category={product.category}
               />
             ))

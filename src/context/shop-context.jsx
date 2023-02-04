@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 
 export const ShopContext = createContext(null);
-const url = "https://fakestoreapi.com/products";
+
 
 const getProducts = async (
   setProducts,
@@ -13,12 +13,13 @@ const getProducts = async (
   try {
     setProducts([]);
     setFetched(false);
-    const result = await axios.get(url);
-    setProducts(result.data);
-    if (result.data.length > 0) {
+    const result = await axios.get(process.env.REACT_APP_API_URL);
+    setProducts(result.data.data);
+    if (result.data.data.length > 0) {
       setFetched(true);
     }
-    setInitialProductsLength(result.data.length);
+    setInitialProductsLength(result.data.data.length);
+    console.log(result.data.data);
   } catch (error) {
     console.log(error);
     setErrorMessage(error.message);
@@ -49,11 +50,11 @@ export const ShopContextProvider = ({ children }) => {
       const result =
         param !== "all"
           ? await axios.get(
-              `https://fakestoreapi.com/products/category/${param}`
+            `${process.env.REACT_APP_API_URL}/category/${param}`
             )
-          : await axios.get(url);
-      setProducts(result.data);
-      if (result.data.length > 0) {
+          : await axios.get(process.env.REACT_APP_API_URL);
+      setProducts(result.data.data);
+      if (result.data.data.length > 0) {
         setFetched(true);
       }
     } catch (error) {
@@ -139,7 +140,7 @@ export const ShopContextProvider = ({ children }) => {
           return b.rating.rate - a.rating.rate;
         }
       }
-      return a.id - b.id;
+      return a.productId - b.productId;
     });
     return orderedProducts;
   }
@@ -160,9 +161,9 @@ export const ShopContextProvider = ({ children }) => {
     try {
       setProducts([]);
       setFetched(false);
-      const result = await axios.get(url);
-      setProducts(result.data);
-      if (result.data.length > 0) {
+      const result = await axios.get(process.env.REACT_APP_API_URL);
+      setProducts(result.data.data);
+      if (result.data.data.length > 0) {
         setFetched(true);
       }
     } catch (error) {

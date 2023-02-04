@@ -4,7 +4,7 @@ import { Navbar } from "./component/navbar";
 import { Shop } from "./pages/shop/shop";
 import { Cart } from "./pages/cart/cart";
 import { ShopContextProvider } from "./context/shop-context";
-
+// eslint-disable-next-line
 function App() {
   return (
     <div className="App">

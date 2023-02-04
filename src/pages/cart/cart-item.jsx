@@ -3,10 +3,10 @@ import { ShopContext } from "../../context/shop-context";
 import { XCircle } from "phosphor-react";
 
 export const CartItem = (prop) => {
-  const { id, title, price, image } = prop.data;
+  const { productId, title, price, image } = prop.data;
   const { addToCart, cartItems, removeFromCart, updateCartItemCount } =
     useContext(ShopContext);
-  const cartItemAmount = cartItems[id];
+  const cartItemAmount = cartItems[productId];
 
   return (
     <div className="cartItem">
@@ -15,22 +15,22 @@ export const CartItem = (prop) => {
         <XCircle
           className="deleteItem"
           size={28}
-          onClick={() => updateCartItemCount(0, id)}
+          onClick={() => updateCartItemCount(0, productId)}
         />
         <p>
           <b>{title}</b>
         </p>
         <p>${price}</p>
         <div className="countHandler">
-          <button className="cartButton" onClick={() => removeFromCart(id)}>
+          <button className="cartButton" onClick={() => removeFromCart(productId)}>
             -
           </button>
           <input
-            onChange={(e) => updateCartItemCount(Number(e.target.value), id)}
+            onChange={(e) => updateCartItemCount(Number(e.target.value), productId)}
             value={cartItemAmount}
             type="number"
           />
-          <button className="cartButton" onClick={() => addToCart(id)}>
+          <button className="cartButton" onClick={() => addToCart(productId)}>
             +
           </button>
         </div>
