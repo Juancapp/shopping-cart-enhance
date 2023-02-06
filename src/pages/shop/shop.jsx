@@ -51,7 +51,6 @@ export const Shop = () => {
 
   const handleSelectCategory = (e) => {
     category.current = e.target.value;
-    console.log(category.current);
     getProductsByCategory(category.current);
   };
 

@@ -27,7 +27,7 @@
   height: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content:center;
+  justify-content: center;
 }
 
 .deleteBttn {
@@ -45,9 +45,6 @@
 }
 
 .spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -179,11 +176,4 @@
   .shop {
     flex-direction: column;
   }
-  /* .products {
-    flex-direction: column;
-  }
-
-  .product {
-    width: auto;
-  } */
 }

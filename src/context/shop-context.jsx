@@ -18,7 +18,6 @@ const getProducts = async (
       setFetched(true);
     }
     setInitialProductsLength(result.data.data.length);
-    console.log(result.data.data);
   } catch (error) {
     console.log(error);
     setErrorMessage(error.message);
@@ -39,7 +38,6 @@ export const ShopContextProvider = ({ children }) => {
 
   const handleSearch = (e) => {
     search.current= e.target.value;
-    console.log(search.current)
   };
 
   const getProductsByCategory = async (param) => {

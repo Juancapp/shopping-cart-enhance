@@ -1,7 +1,6 @@
-.modal {
+.curtain {
   display: flex;
   position: fixed;
-  z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
@@ -9,15 +8,21 @@
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1
 }
 
 .modal-content {
-  background-color: #fefefe;
+  background-color: white;
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: auto;
   padding: 0 20px;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  z-index: 2;
   border: 1px solid #888;
   width: 30%;
   height: 20%;
@@ -57,13 +62,13 @@
 }
 
 .cancel-button {
-  color: #560909!important;
-  border: 2px solid #560909!important;
+  color: #560909 !important;
+  border: 2px solid #560909 !important;
 }
 
 .cancel-button:hover {
-  background-color: #560909!important;
-  color: white!important;
+  background-color: #560909 !important;
+  color: white !important;
 }
 
 .button:hover {

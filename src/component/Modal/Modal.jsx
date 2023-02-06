@@ -9,7 +9,8 @@ function Modal({
   handleClose,
 }) {
   return (
-    <div id="myModal" className="modal">
+    <>
+      <div id="myModal" className="curtain"></div>
       <div className="modal-content">
         <button
           className="close"
@@ -49,7 +50,7 @@ function Modal({
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
