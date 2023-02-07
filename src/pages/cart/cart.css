@@ -1,3 +1,5 @@
+@import url('../../variables.css');
+
 .cart {
   display: flex;
   flex-direction: column;
@@ -52,7 +54,7 @@
   width: 40px;
   text-align: center;
   font-weight: bolder;
-  border: #00606b 2px solid;
+  border: var(--main-bg-color) 2px solid;
   border-radius: 4px;
   outline: none;
 }
@@ -76,7 +78,7 @@
 
 .checkout button {
   padding: 10px;
-  background-color: #087f8c;
+  background-color: var(--main-bg-color);
   color: white;
   border: none;
   border-radius: 8px;
@@ -84,17 +86,7 @@
 }
 
 .checkout button:hover {
-  background-color: #00606b;
-}
-
-.spinner {
-  top: 50%;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  border: 5px solid gray;
-  border-top-color: #333;
-  animation: spin 0.6s linear infinite;
+  background-color: var(--main-bg-color);
 }
 
 input::-webkit-outer-spin-button,

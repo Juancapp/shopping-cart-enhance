@@ -1,5 +1,7 @@
+@import url('../../variables.css');
+
 .footer {
-  background-color: #095256;
+  background-color: var(--main-bg-color);
   color: white;
   height: 350px;
   bottom: 0;
@@ -118,7 +120,7 @@
     width: 100%;
   }
 
-  button:hover, a:hover {
+  button:hover, a:hover, div {
     cursor: none;
   }
 }

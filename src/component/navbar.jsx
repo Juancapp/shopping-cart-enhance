@@ -20,12 +20,12 @@ export const Navbar = () => {
   return (
     <div className="navbar">
       <div className="links">
-        <div className="logo">
-          <Storefront size={32} color="white" />
-          <Link to="/" onClick={getProductsNavBar}>
+        <Link to="/" onClick={getProductsNavBar}>
+          <div className="logo">
+            <Storefront size={32} color="white" />
             <p>Cocoa</p>
-          </Link>
-        </div>
+          </div>
+        </Link>
         <div className="shopAndCart">
           <Link to="/cart">
             <ShoppingCart size={32} />

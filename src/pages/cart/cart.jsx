@@ -1,3 +1,4 @@
+import { Spinner } from "../../component/Spinner/Spinner";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../component/Modal/Modal";
@@ -76,7 +77,7 @@ export const Cart = () => {
             )}
           </>
         ) : (
-          <div className="spinner"></div>
+          <Spinner />
         )}
       </div>
     </>

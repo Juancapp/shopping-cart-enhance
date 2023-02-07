@@ -9,6 +9,7 @@ import {
 } from "../../category";
 import "./shop.css";
 import { Select } from "../../component/Select/Select";
+import { Spinner } from "../../component/Spinner/Spinner";
 
 export const Shop = () => {
   const {
@@ -124,7 +125,7 @@ export const Shop = () => {
             <h3>No product matches the searched name</h3>
           )
         ) : (
-          <div className="spinner"></div>
+          <Spinner />
         )}
       </div>
     </div>

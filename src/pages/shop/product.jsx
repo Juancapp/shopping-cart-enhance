@@ -19,6 +19,9 @@ export const Product = ({ productId, title, price, image, rate, category }) => {
         <p>Category: {category.charAt(0).toUpperCase() + category.slice(1)}</p>
       </div>
       <div className="buttonsContainer">
+        <button className="addToCartBttn" onClick={() => addToCart(productId)}>
+          Add to Cart {cartItemAmount > 0 && <p>{cartItemAmount}</p>}
+        </button>
         {cartItemAmount > 0 && (
           <XCircle
             className="deleteBttn"
@@ -26,9 +29,6 @@ export const Product = ({ productId, title, price, image, rate, category }) => {
             onClick={() => updateCartItemCount(0, productId)}
           />
         )}
-        <button className="addToCartBttn" onClick={() => addToCart(productId)}>
-          Add to Cart {cartItemAmount > 0 && <p>{cartItemAmount}</p>}
-        </button>
       </div>
     </div>
   );

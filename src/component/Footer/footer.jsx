@@ -16,7 +16,7 @@ export const Footer = () => {
         <div>
           <span>Subscribe to our newsletter</span>
           <div className="inputContainer">
-            <input type="text" className="input" placeholder="Email..."/>
+            <input type="text" className="input" placeholder="Email..." />
             <button>Send</button>
           </div>
         </div>
@@ -38,15 +38,34 @@ export const Footer = () => {
       <div className="socialMedia">
         <span>Follow us on our networks</span>
         <div>
-          <LinkedinLogo className="icon" color="white" size={37} weight="fill" />
+          <a href="https://www.linkedin.com/in/jandrescappuccio/" target='blank'>
+            <LinkedinLogo
+              className="icon"
+              color="white"
+              size={37}
+              weight="fill"
+            />
+          </a>
           <TwitterLogo className="icon" color="white" size={37} weight="fill" />
-          <FacebookLogo className="icon" color="white" size={37} weight="fill" />
-          <InstagramLogo className="icon" color="white" size={37} weight="fill" />
+          <FacebookLogo
+            className="icon"
+            color="white"
+            size={37}
+            weight="fill"
+          />
+          <InstagramLogo
+            className="icon"
+            color="white"
+            size={37}
+            weight="fill"
+          />
           <YoutubeLogo className="icon" color="white" size={37} weight="fill" />
         </div>
       </div>
       <span className="copyright">
-        © 2023 Cocoa | All rights reserved | <a href="">See Terms and Conditions</a> | <a href="">View Privacy Policy</a> | Contact: info@cocoamarket.com
+        © 2023 Cocoa | All rights reserved |{" "}
+        <a href="">See Terms and Conditions</a> |{" "}
+        <a href="">View Privacy Policy</a> | Contact: info@cocoamarket.com
       </span>
     </div>
   );
