@@ -10,7 +10,14 @@ function Modal({
 }) {
   return (
     <>
-      <div id="myModal" className="curtain"></div>
+      <div
+        id="myModal"
+        className="curtain"
+        onClick={() => {
+          setIsOpen(false);
+          handleClose();
+        }}
+      ></div>
       <div className="modal-content">
         <button
           className="close"

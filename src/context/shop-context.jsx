@@ -13,7 +13,6 @@ const getProducts = async (
     setProducts([]);
     setFetched(false);
     const result = await axios.get(`${process.env.REACT_APP_API_URL}/`);
-    console.log(result.data.data)
     setProducts(result.data.data);
     if (result.data.data.length > 0) {
       setFetched(true);

@@ -13,7 +13,7 @@
 
 .modal-content {
   background-color: white;
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
