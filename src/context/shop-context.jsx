@@ -34,7 +34,7 @@ export const ShopContextProvider = ({ children }) => {
   const [productsToDisplay, setProductsToDisplay] = useState([]);
   const search = useRef("");
   const [orderItem, setOrderItem] = useState("default");
-  const [item, setItem] = useState("rate");
+  const [item, setItem] = useState("price");
 
   const handleSearch = (e) => {
     search.current= e.target.value;

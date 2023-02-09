@@ -1,5 +1,5 @@
 import React from "react";
-import './select.css'
+import "./select.css";
 
 export const Select = ({
   name,

@@ -20,22 +20,11 @@ export const Shop = () => {
     setProductsToDisplay,
     setOrderItem,
     setItem,
+    fetched,
     orderProducts,
   } = useContext(ShopContext);
-  const search = useRef("");
-  const category = useRef("all");
 
-  useEffect(() => {
-    setProductsToDisplay(
-      products.filter((product) => {
-        return product.title
-          .toString()
-          .toLowerCase()
-          .includes(search.current.toLowerCase());
-      })
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [products]);
+  const category = useRef("all");
 
   useEffect(() => {
     setProductsToDisplay(orderProducts());
@@ -81,6 +70,17 @@ export const Shop = () => {
         />
         <div>
           <p>Order by:</p>
+          <label htmlFor="price">
+            Price:
+            <input
+              type="radio"
+              name="orderItem"
+              id="price"
+              value="price"
+              onChange={(e) => handleSelectItem(e)}
+              defaultChecked
+            ></input>
+          </label>
           <label htmlFor="rate">
             Rate:
             <input
@@ -91,23 +91,13 @@ export const Shop = () => {
               onChange={(e) => handleSelectItem(e)}
             ></input>
           </label>
-          <label htmlFor="price">
-            Price:
-            <input
-              type="radio"
-              name="orderItem"
-              id="price"
-              value="price"
-              onChange={(e) => handleSelectItem(e)}
-            ></input>
-          </label>
         </div>
       </div>
       <div className="shopTitle">
         <h4>Products {`(Work in progress)`}</h4>
       </div>
       <div className="products">
-        {products.length > 0 ? (
+        {fetched && products.length ? (
           productsToDisplay.length > 0 ? (
             productsToDisplay.map((product) => (
               <Product
