@@ -1,0 +1,131 @@
+@import url("../../variables.css");
+
+.productDetails {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.productContainer {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  gap: 3em;
+}
+
+.rate {
+  display: flex;
+  align-items: center;
+}
+
+.rate p {
+  display: inline-block;
+  font-size: 18px;
+}
+
+.productContainer img {
+  width: 40%;
+  height: 30%;
+}
+
+.productDescriptionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.productDescriptionContainer p {
+  margin: 0;
+}
+
+.productDescriptionContainer h2 {
+  margin: 0;
+}
+
+.price {
+  font-size: 30px;
+  margin: 0;
+}
+
+.addToCartDetailsBttn,
+.buyDetailsBttn {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 60%;
+}
+
+.productContainer p {
+  display: inline-block;
+}
+
+.inputProductContainer p {
+  margin-right: 10px;
+  color: rgba(0, 0, 0, 0.795);
+}
+
+.inputProductContainer input {
+  width: 30%;
+  text-align: center;
+  font-weight: bolder;
+  border: var(--main-bg-color) 2px solid;
+  border-radius: 4px;
+  outline: none;
+}
+
+.addToCartDetailsBttn {
+  color: var(--main-bg-color);
+  background-color: #cfd2e2;
+  font-weight: semi-bold;
+}
+
+.addToCartDetailsBttn:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.205);
+}
+
+
+.buyButtonsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+  width: 100%;
+}
+
+.buyDetailsBttn {
+  background-color: var(--main-bg-color);
+  color: white;
+}
+
+.buyDetailsBttn:hover {
+  box-shadow: 0 0 5px rgb(0, 0, 0.205);
+}
+
+.changeAmountBttn {
+  background-color: white;
+  border: none;
+  color: black;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+  .productContainer {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .productDescriptionContainer {
+    width: 80%;
+  }
+
+  .buyButtonsContainer {
+    align-items: center;
+  }
+  .productDetails {
+    margin-block: 60px;
+  }
+}

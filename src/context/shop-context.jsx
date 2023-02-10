@@ -7,7 +7,7 @@ const getProducts = async (
   setProducts,
   setFetched,
   setInitialProductsLength,
-  setErrorMessage,
+  setErrorMessage
 ) => {
   try {
     setProducts([]);
@@ -37,7 +37,7 @@ export const ShopContextProvider = ({ children }) => {
   const [item, setItem] = useState("price");
 
   const handleSearch = (e) => {
-    search.current= e.target.value;
+    search.current = e.target.value;
   };
 
   const getProductsByCategory = async (param) => {
@@ -47,7 +47,7 @@ export const ShopContextProvider = ({ children }) => {
       const result =
         param !== "all"
           ? await axios.get(
-            `${process.env.REACT_APP_API_URL}/category/${param}`
+              `${process.env.REACT_APP_API_URL}/category/${param}`
             )
           : await axios.get(process.env.REACT_APP_API_URL);
       setProducts(result.data.data);
@@ -91,6 +91,10 @@ export const ShopContextProvider = ({ children }) => {
     setCartItems((prev) => ({ ...prev, [itemId]: newAmount }));
   };
 
+  const addAmountToCart = (newAmount, itemId) => {
+    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + newAmount }));
+  };
+
   const resetCount = () => {
     setInitialProductsLength(0);
     getProducts(
@@ -110,9 +114,8 @@ export const ShopContextProvider = ({ children }) => {
           .includes(search.current.toLowerCase());
       })
     );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [products]);
-
 
   useEffect(() => {
     setProductsToDisplay(orderProducts());
@@ -189,7 +192,8 @@ export const ShopContextProvider = ({ children }) => {
     getProductsByCategory,
     handleSearch,
     search,
-    onClickSearchBttn
+    onClickSearchBttn,
+    addAmountToCart
   };
 
   return (
