@@ -18,6 +18,14 @@ export const Cart = () => {
     setIsToConfirm(false);
   };
 
+  useEffect(() => {
+    document.documentElement.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, []);
+
   const handleClose = () => {
     setIsToConfirm(true);
     if (!isToConfirm) {
@@ -32,7 +40,9 @@ export const Cart = () => {
     setTotalPrice(0);
     for (let i = 1; i < productsToCart.length + 1; i++) {
       if (cartItems[i] !== 0) {
-        const product = productsToCart.find((product) => product.productId === i);
+        const product = productsToCart.find(
+          (product) => product.productId === i
+        );
         setTotalPrice((price) => (price += product.price * cartItems[i]));
       }
     }
