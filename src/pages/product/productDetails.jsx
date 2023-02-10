@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Spinner } from "../../component/Spinner/Spinner";
+import ReactImageMagnify from "react-image-magnify";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import "./productDetails.css";
 import { ShopContext } from "../../context/shop-context";
@@ -41,59 +42,74 @@ export const ProductDetails = () => {
 
   return (
     <div className="productDetails">
-      <div className="productContainer">
-        {Object.keys(product).length > 0 ? (
-          <>
-            <img src={product.image} alt={product.title} />
-            <div className="productDescriptionContainer">
-              <h2>{product.title}</h2>
-              <div className="rate">
-                <Star size={18} weight="fill" />
-                <p>{product.rating.rate}</p>
-              </div>
-              <p className="price">${product.price}</p>
-              <p>{product.description}</p>
-              <div className="inputProductContainer">
-                <p>Quantity:</p>
-                <button className="changeAmountBttn"
-                  onClick={() =>
-                    productAmount > 1 &&
-                    setProductAmount(parseInt(productAmount) - 1)
-                  }
-                >
-                  -
-                </button>
-                <input
-                  type="number"
-                  value={productAmount}
-                  onChange={handleChange}
-                />
-                <button className="changeAmountBttn"
-                  onClick={() => setProductAmount(parseInt(productAmount) + 1)}
-                >
-                  +
-                </button>
-              </div>
-              <div className="buyButtonsContainer">
-                <button
-                  className="buyDetailsBttn"
-                  onClick={() => {
-                    addToCart();
-                    navigate("/cart");
-                  }}
-                >
-                  Buy
-                </button>
-                <button className="addToCartDetailsBttn" onClick={addToCart}>
-                  Add to cart
-                </button>
-              </div>
+      {Object.keys(product).length > 0 ? (
+        <div className="productContainer">
+          <div class="img">
+            <ReactImageMagnify
+              {...{
+                smallImage: {
+                  alt: product.title,
+                  isFluidWidth: true,
+                  src: product.image,
+                },
+                largeImage: {
+                  src: product.image,
+                  width: 1200,
+                  height: 1800,
+                },
+              }}
+            />
+          </div>
+          <div className="productDescriptionContainer">
+            <h2>{product.title}</h2>
+            <div className="rate">
+              <Star size={18} weight="fill" />
+              <p>{product.rating.rate}</p>
             </div>
-          </>
-        ) : (
-          <Spinner />
-        )}
-      </div>
+            <p className="price">${product.price}</p>
+            <p>{product.description}</p>
+            <div className="inputProductContainer">
+              <p>Quantity:</p>
+              <button
+                className="changeAmountBttn"
+                onClick={() =>
+                  productAmount > 1 &&
+                  setProductAmount(parseInt(productAmount) - 1)
+                }
+              >
+                -
+              </button>
+              <input
+                type="number"
+                value={productAmount}
+                onChange={handleChange}
+              />
+              <button
+                className="changeAmountBttn"
+                onClick={() => setProductAmount(parseInt(productAmount) + 1)}
+              >
+                +
+              </button>
+            </div>
+            <div className="buyButtonsContainer">
+              <button
+                className="buyDetailsBttn"
+                onClick={() => {
+                  addToCart();
+                  navigate("/cart");
+                }}
+              >
+                Buy
+              </button>
+              <button className="addToCartDetailsBttn" onClick={addToCart}>
+                Add to cart
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <Spinner />
+      )}
     </div>
   );
 };
