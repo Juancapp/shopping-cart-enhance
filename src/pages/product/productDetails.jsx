@@ -37,6 +37,11 @@ export const ProductDetails = () => {
 
   useEffect(() => {
     getProductById();
+    document.documentElement.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant", // Optional if you want to skip the scrolling animation
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -61,7 +66,7 @@ export const ProductDetails = () => {
             />
           </div>
           <div className="productDescriptionContainer">
-            <h2>{product.title}</h2>
+            <h2 id="title">{product.title}</h2>
             <div className="rate">
               <Star size={18} weight="fill" />
               <p>{product.rating.rate}</p>
