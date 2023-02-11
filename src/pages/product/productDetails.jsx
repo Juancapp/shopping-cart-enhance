@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Spinner } from "../../component/Spinner/Spinner";
-import ReactImageMagnify from "react-image-magnify";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import "./productDetails.css";
 import { ShopContext } from "../../context/shop-context";
@@ -14,6 +13,7 @@ export const ProductDetails = () => {
   const [productAmount, setProductAmount] = useState(1);
   const { addAmountToCart } = useContext(ShopContext);
   const navigate = useNavigate();
+  const [magnifyDisplay, setMagnifyDisplay] = useState(false);
 
   async function getProductById() {
     try {
@@ -48,70 +48,69 @@ export const ProductDetails = () => {
   return (
     <div className="productDetails">
       {Object.keys(product).length > 0 ? (
-        <div className="productContainer">
-          <div class="img">
-            <ReactImageMagnify
-              {...{
-                smallImage: {
-                  alt: product.title,
-                  isFluidWidth: true,
-                  src: product.image,
-                },
-                largeImage: {
-                  src: product.image,
-                  width: 1200,
-                  height: 1800,
-                },
-              }}
+        <>
+          <img
+            className={`magnifyImgDisplayNone ${
+              magnifyDisplay && `magnifyImg`
+            }`}
+            src={product.image}
+            alt={product.title}
+          />
+          <div className="productContainer">
+            <img
+              src={product.image}
+              alt={product.title}
+              onMouseOver={() => setMagnifyDisplay(true)}
+              onMouseLeave={() => setMagnifyDisplay(false)}
             />
+            <div className="productDescriptionContainer">
+              <h2 id="title">{product.title}</h2>
+              <div className="rate">
+                <Star size={18} weight="fill" />
+                <p>{product.rating.rate}</p>
+              </div>
+              <p className="price">${product.price}</p>
+              <p>{product.description}</p>
+              <div className="inputProductContainer">
+                <p>Quantity:</p>
+                <button
+                  className="changeAmountBttn"
+                  onClick={() =>
+                    productAmount > 1 &&
+                    setProductAmount(parseInt(productAmount) - 1)
+                  }
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  value={productAmount}
+                  onChange={handleChange}
+                />
+                <button
+                  className="changeAmountBttn"
+                  onClick={() => setProductAmount(parseInt(productAmount) + 1)}
+                >
+                  +
+                </button>
+              </div>
+              <div className="buyButtonsContainer">
+                <button
+                  className="buyDetailsBttn"
+                  onClick={() => {
+                    addToCart();
+                    navigate("/cart");
+                  }}
+                >
+                  Buy
+                </button>
+                <button className="addToCartDetailsBttn" onClick={addToCart}>
+                  Add to cart
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="productDescriptionContainer">
-            <h2 id="title">{product.title}</h2>
-            <div className="rate">
-              <Star size={18} weight="fill" />
-              <p>{product.rating.rate}</p>
-            </div>
-            <p className="price">${product.price}</p>
-            <p>{product.description}</p>
-            <div className="inputProductContainer">
-              <p>Quantity:</p>
-              <button
-                className="changeAmountBttn"
-                onClick={() =>
-                  productAmount > 1 &&
-                  setProductAmount(parseInt(productAmount) - 1)
-                }
-              >
-                -
-              </button>
-              <input
-                type="number"
-                value={productAmount}
-                onChange={handleChange}
-              />
-              <button
-                className="changeAmountBttn"
-                onClick={() => setProductAmount(parseInt(productAmount) + 1)}
-              >
-                +
-              </button>
-            </div>
-            <div className="buyButtonsContainer">
-              <button
-                className="buyDetailsBttn"
-                onClick={() => {
-                  addToCart();
-                  navigate("/cart");
-                }}
-              >
-                Buy
-              </button>
-              <button className="addToCartDetailsBttn" onClick={addToCart}>
-                Add to cart
-              </button>
-            </div>
-          </div>
-        </div>
+        </>
       ) : (
         <Spinner />
       )}
