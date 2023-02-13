@@ -149,6 +149,10 @@
   }
 
   .magnifyImg {
+    display: none!important;
+  }
+
+  .magnifyImgDisplayNone {
     display: none;
   }
 
