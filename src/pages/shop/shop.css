@@ -23,7 +23,7 @@
 }
 
 .products {
-  width: 70%;
+  width: 90%;
   flex-wrap: wrap;
   gap: 6em;
   height: auto;
